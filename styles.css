@@ -287,12 +287,17 @@ input:focus {
   background: #f8fafc;
 }
 
-.th-help {
+.th-help,
+.field-help {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 5px;
   min-height: 24px;
+}
+
+.field-help {
+  width: fit-content;
 }
 
 .help-dot {
@@ -343,6 +348,8 @@ input:focus {
 }
 
 .th-help:hover .tooltip,
+.field-help:hover .tooltip,
+.field-help:focus-within .tooltip,
 .help-dot:focus + .tooltip {
   display: block;
 }
