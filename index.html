@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>价格与运费诊断工具</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">独立站顾问工作台</p>
+        <h1>价格与运费门槛诊断</h1>
+      </div>
+      <div class="header-actions">
+        <button id="loadDemo" class="secondary-button" type="button">载入示例</button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <nav class="tool-tabs" aria-label="诊断功能">
+        <button class="tab-button active" type="button" data-view="priceTool">价格诊断</button>
+        <button class="tab-button" type="button" data-view="shippingTool">运费门槛诊断</button>
+      </nav>
+
+      <section id="priceTool" class="tool-view active" aria-label="价格诊断">
+        <section class="control-panel" aria-label="价格诊断口径">
+          <div class="panel-title">
+            <h2>价格诊断口径</h2>
+            <span>用于 SKU 毛利、价格弹性、竞品锚点和可测性判断</span>
+          </div>
+          <div class="metric-grid compact">
+            <label>
+              支付费率 %
+              <input id="paymentRate" type="number" min="0" step="0.1" value="3.4" />
+            </label>
+            <label>
+              支付固定费
+              <input id="paymentFixed" type="number" min="0" step="0.01" value="0.3" />
+            </label>
+            <label>
+              基准 CVR %
+              <input id="baselineCvr" type="number" min="0.1" step="0.1" value="2.5" />
+            </label>
+            <label>
+              月访客
+              <input id="monthlyVisitors" type="number" min="0" step="100" value="60000" />
+            </label>
+          </div>
+        </section>
+
+        <section class="summary-strip" aria-label="价格诊断总览">
+          <article>
+            <span>高优先级 SKU</span>
+            <strong id="testableCount">0</strong>
+          </article>
+          <article>
+            <span>平均 CM%</span>
+            <strong id="avgCmPct">0%</strong>
+          </article>
+          <article>
+            <span>建议测试周期</span>
+            <strong id="cycleHint">待计算</strong>
+          </article>
+        </section>
+
+        <article class="workspace-main">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Price Diagnosis</p>
+              <h2>商品价格诊断</h2>
+            </div>
+            <div class="section-actions">
+              <input id="csvInput" type="file" accept=".csv,text/csv" hidden />
+              <button id="importCsv" class="secondary-button" type="button">导入 CSV</button>
+              <button id="exportPriceReport" class="primary-button" type="button">导出价格诊断</button>
+              <button id="addSku" class="icon-button" type="button" title="新增 SKU">+</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="diagnosis-table">
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>售价</th>
+                  <th>COGS</th>
+                  <th>尾程</th>
+                  <th>退货摊销</th>
+                  <th>月流量</th>
+                  <th>弹性 |E|</th>
+                  <th>竞品中位价</th>
+                  <th>无券/有券 CVR</th>
+                  <th>结论</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="skuRows"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <section class="results-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Price Decision</p>
+              <h2>价格诊断结论</h2>
+            </div>
+          </div>
+          <div id="priceDecisionBoard" class="decision-board"></div>
+        </section>
+
+        <section class="results-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Price Candidate List</p>
+              <h2>价格测试候选清单</h2>
+            </div>
+          </div>
+          <div id="priceCandidateList" class="candidate-list"></div>
+        </section>
+      </section>
+
+      <section id="shippingTool" class="tool-view" aria-label="运费门槛诊断">
+        <section class="summary-strip" aria-label="运费诊断总览">
+          <article>
+            <span>门槛判断</span>
+            <strong id="shippingStatus">待输入</strong>
+          </article>
+          <article>
+            <span>候选新门槛</span>
+            <strong id="shippingRecommendation">待计算</strong>
+          </article>
+          <article>
+            <span>运费杠杆</span>
+            <strong id="shippingLeverage">待计算</strong>
+          </article>
+          <article>
+            <span>成本模型</span>
+            <strong id="shippingModel">待校准</strong>
+          </article>
+        </section>
+
+        <article class="workspace-side shipping-workspace">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Shipping Threshold</p>
+              <h2>运费门槛诊断</h2>
+            </div>
+            <button id="exportShippingReport" class="primary-button" type="button">导出运费诊断</button>
+          </div>
+
+          <div class="metric-grid">
+            <label>
+              当前免邮门槛
+              <input id="freeShippingThreshold" type="number" min="0" step="1" value="299" />
+            </label>
+            <label>
+              AOV 均值
+              <input id="aovMean" type="number" min="0" step="1" value="320" />
+            </label>
+            <label>
+              AOV 中位数
+              <input id="aovMedian" type="number" min="0" step="1" value="285" />
+            </label>
+            <label>
+              门槛下方紧邻占比 %
+              <input id="nearBelowShare" type="number" min="0" max="100" step="1" value="24" />
+            </label>
+            <label>
+              免邮达标率 %
+              <input id="qualifiedShare" type="number" min="0" max="100" step="1" value="68" />
+            </label>
+            <label>
+              单均实际运费
+              <input id="avgShippingCost" type="number" min="0" step="0.1" value="38" />
+            </label>
+            <label>
+              显示运费后流失 %
+              <input id="shippingDropoff" type="number" min="0" max="100" step="1" value="42" />
+            </label>
+            <label>
+              履约模型误差 %
+              <input id="fulfillmentError" type="number" min="0" step="0.1" value="6" />
+            </label>
+          </div>
+
+          <div class="diagnosis-card" id="shippingDiagnosis"></div>
+          <div id="shippingActionPlan" class="action-plan"></div>
+        </article>
+      </section>
+    </main>
+
+    <template id="skuRowTemplate">
+      <tr>
+        <td><input data-field="sku" type="text" /></td>
+        <td><input data-field="price" type="number" min="0" step="0.01" /></td>
+        <td><input data-field="cogs" type="number" min="0" step="0.01" /></td>
+        <td><input data-field="fulfillment" type="number" min="0" step="0.01" /></td>
+        <td><input data-field="returnCost" type="number" min="0" step="0.01" /></td>
+        <td><input data-field="traffic" type="number" min="0" step="100" /></td>
+        <td><input data-field="elasticity" type="number" min="0" step="0.1" /></td>
+        <td><input data-field="competitorMedian" type="number" min="0" step="0.01" /></td>
+        <td><input data-field="discountRatio" type="number" min="0" max="200" step="1" /></td>
+        <td><div class="row-result"></div></td>
+        <td><button class="remove-row" type="button" title="删除">×</button></td>
+      </tr>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

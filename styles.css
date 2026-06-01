@@ -1,0 +1,505 @@
+:root {
+  color-scheme: light;
+  --ink: #17202a;
+  --muted: #687385;
+  --line: #dbe2ea;
+  --soft: #f5f7fa;
+  --panel: #ffffff;
+  --accent: #0f766e;
+  --accent-strong: #115e59;
+  --amber: #b7791f;
+  --red: #b42318;
+  --green: #047857;
+  --blue: #2563eb;
+  --shadow: 0 18px 55px rgba(21, 32, 43, 0.08);
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 1120px;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(15, 118, 110, 0.08), rgba(255, 255, 255, 0) 240px),
+    #eef2f5;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 36px 18px;
+}
+
+.app-header h1,
+.section-heading h2,
+.panel-title h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.app-header h1 {
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.primary-button,
+.secondary-button,
+.icon-button,
+.tab-button {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  min-height: 38px;
+  padding: 0 15px;
+  font-weight: 750;
+}
+
+.primary-button {
+  color: #fff;
+  background: var(--accent);
+}
+
+.primary-button:hover {
+  background: var(--accent-strong);
+}
+
+.secondary-button {
+  color: var(--ink);
+  background: #fff;
+  border-color: var(--line);
+}
+
+.icon-button {
+  width: 38px;
+  padding: 0;
+  font-size: 22px;
+  line-height: 1;
+  color: #fff;
+  background: var(--accent);
+}
+
+.app-shell {
+  padding: 0 36px 36px;
+}
+
+.tool-tabs {
+  display: inline-flex;
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.tab-button {
+  color: var(--muted);
+  background: transparent;
+}
+
+.tab-button.active {
+  color: #fff;
+  background: var(--accent);
+}
+
+.tool-view {
+  display: none;
+  margin-top: 16px;
+}
+
+.tool-view.active {
+  display: block;
+}
+
+.control-panel,
+.workspace-main,
+.workspace-side,
+.results-section {
+  background: var(--panel);
+  border: 1px solid rgba(219, 226, 234, 0.9);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.panel-title span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-grid.compact {
+  grid-template-columns: repeat(4, 136px);
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+input {
+  width: 100%;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0 9px;
+  color: var(--ink);
+  background: #fff;
+  outline: none;
+}
+
+input:focus {
+  border-color: rgba(15, 118, 110, 0.65);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+#priceTool .summary-strip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.summary-strip article {
+  padding: 17px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.summary-strip span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.summary-strip strong {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(720px, 1fr) 360px;
+  gap: 16px;
+  align-items: start;
+}
+
+.workspace-main,
+.workspace-side,
+.results-section {
+  padding: 18px;
+}
+
+.shipping-workspace {
+  max-width: 980px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.diagnosis-table {
+  width: 100%;
+  min-width: 1080px;
+  border-collapse: collapse;
+}
+
+.diagnosis-table th,
+.diagnosis-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.diagnosis-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: var(--muted);
+  font-size: 12px;
+  background: #f8fafc;
+}
+
+.diagnosis-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.diagnosis-table input {
+  min-width: 78px;
+}
+
+.diagnosis-table [data-field="sku"] {
+  min-width: 132px;
+}
+
+.row-result {
+  min-width: 210px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.row-result strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.remove-row {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  background: #fff;
+}
+
+.diagnosis-card {
+  margin-top: 14px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.diagnosis-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.diagnosis-card p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.signal-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.signal {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.signal b {
+  color: var(--ink);
+}
+
+.results-section {
+  margin-top: 16px;
+}
+
+.candidate-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.decision-board,
+.action-plan {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.action-plan {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.decision-card,
+.candidate-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fff;
+}
+
+.decision-card h3,
+.candidate-card h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+
+.candidate-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: #f2f4f7;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.pill.green {
+  color: var(--green);
+  background: rgba(4, 120, 87, 0.11);
+}
+
+.pill.amber {
+  color: var(--amber);
+  background: rgba(183, 121, 31, 0.13);
+}
+
+.pill.red {
+  color: var(--red);
+  background: rgba(180, 35, 24, 0.11);
+}
+
+.pill.blue {
+  color: var(--blue);
+  background: rgba(37, 99, 235, 0.11);
+}
+
+.decision-card p,
+.candidate-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 22px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: #fff;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  body {
+    min-width: 0;
+  }
+
+  .app-header,
+  .control-panel,
+  .workspace-grid {
+    display: block;
+  }
+
+  .app-header {
+    padding: 22px 16px 12px;
+  }
+
+  .header-actions {
+    margin-top: 14px;
+  }
+
+  .section-actions {
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
+
+  .app-shell {
+    padding: 0 16px 24px;
+  }
+
+  .control-panel {
+    padding: 16px;
+  }
+
+  .metric-grid,
+  .metric-grid.compact,
+  .summary-strip,
+  #priceTool .summary-strip,
+  .decision-board,
+  .action-plan,
+  .candidate-list {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-side,
+  .results-section {
+    margin-top: 14px;
+  }
+}
