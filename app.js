@@ -42,6 +42,11 @@ const demoSkus = [
   },
 ];
 
+const csvTemplateRows = [
+  ["sku", "price", "cogs", "fulfillment", "returnCost", "traffic", "elasticity", "competitorMedian", "discountRatio"],
+  ["SERUM-30ML", "299", "58", "32", "9", "32000", "1.3", "329", "42"],
+];
+
 const fieldIds = [
   "paymentRate",
   "paymentFixed",
@@ -398,6 +403,17 @@ function exportShippingReport() {
   URL.revokeObjectURL(url);
 }
 
+function downloadCsvTemplate() {
+  const csv = csvTemplateRows.map((row) => row.join(",")).join("\n");
+  const blob = new Blob([`\ufeff${csv}`], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "价格诊断SKU导入模板.csv";
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
 function parseCsv(text) {
   const rows = [];
   let current = "";
@@ -513,6 +529,7 @@ document.querySelector("#addSku").addEventListener("click", () => {
   render();
 });
 document.querySelector("#loadDemo").addEventListener("click", loadDemo);
+document.querySelector("#downloadCsvTemplate").addEventListener("click", downloadCsvTemplate);
 document.querySelector("#exportPriceReport").addEventListener("click", exportPriceReport);
 document.querySelector("#exportShippingReport").addEventListener("click", exportShippingReport);
 document.querySelector("#importCsv").addEventListener("click", () => document.querySelector("#csvInput").click());
