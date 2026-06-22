@@ -179,35 +179,67 @@
 
           <div class="metric-grid">
             <label>
-              当前免邮门槛
+              <span class="field-help">
+                当前免邮门槛
+                <span class="help-dot" tabindex="0" aria-label="当前免邮门槛定义">?</span>
+                <span class="tooltip" role="tooltip">当前站点设置的免运费订单金额门槛。例如满 ¥299 免邮，则填写 299。</span>
+              </span>
               <input id="freeShippingThreshold" type="number" min="0" step="1" value="299" />
             </label>
             <label>
-              AOV 均值
+              <span class="field-help">
+                AOV 均值
+                <span class="help-dot" tabindex="0" aria-label="AOV 均值定义">?</span>
+                <span class="tooltip" role="tooltip">平均客单价：总订单金额 / 订单数。用于判断免邮门槛是否略高于主流订单金额。</span>
+              </span>
               <input id="aovMean" type="number" min="0" step="1" value="320" />
             </label>
             <label>
-              AOV 中位数
+              <span class="field-help">
+                AOV 中位数
+                <span class="help-dot" tabindex="0" aria-label="AOV 中位数定义">?</span>
+                <span class="tooltip" role="tooltip">订单金额排序后位于中间的订单金额。比均值更不容易被少数大额订单拉偏。</span>
+              </span>
               <input id="aovMedian" type="number" min="0" step="1" value="285" />
             </label>
             <label>
-              门槛下方紧邻占比 %
+              <span class="field-help">
+                门槛下方紧邻占比 %
+                <span class="help-dot" tabindex="0" aria-label="门槛下方紧邻占比定义">?</span>
+                <span class="tooltip" role="tooltip">订单金额落在当前免邮门槛 80%-100% 区间的订单占比。占比越高，说明凑单潜力越大。</span>
+              </span>
               <input id="nearBelowShare" type="number" min="0" max="100" step="1" value="24" />
             </label>
             <label>
-              免邮达标率 %
+              <span class="field-help">
+                免邮达标率 %
+                <span class="help-dot" tabindex="0" aria-label="免邮达标率定义">?</span>
+                <span class="tooltip" role="tooltip">达到当前免邮门槛的订单数 / 总订单数。过高可能代表门槛偏低，过低可能代表门槛偏高。</span>
+              </span>
               <input id="qualifiedShare" type="number" min="0" max="100" step="1" value="68" />
             </label>
             <label>
-              单均实际运费
+              <span class="field-help">
+                单均实际运费
+                <span class="help-dot" tabindex="0" aria-label="单均实际运费定义">?</span>
+                <span class="tooltip" role="tooltip">商家实际承担的平均履约运费，不是向客户收取的运费。建议来自承运商账单或 weight×zone 模型。</span>
+              </span>
               <input id="avgShippingCost" type="number" min="0" step="0.1" value="38" />
             </label>
             <label>
-              显示运费后流失 %
+              <span class="field-help">
+                显示运费后流失 %
+                <span class="help-dot" tabindex="0" aria-label="显示运费后流失定义">?</span>
+                <span class="tooltip" role="tooltip">用户在结账页看到运费后未完成支付的比例。数值越高，说明运费对结账劝退影响越大。</span>
+              </span>
               <input id="shippingDropoff" type="number" min="0" max="100" step="1" value="42" />
             </label>
             <label>
-              履约模型误差 %
+              <span class="field-help">
+                履约模型误差 %
+                <span class="help-dot" tabindex="0" aria-label="履约模型误差定义">?</span>
+                <span class="tooltip" role="tooltip">履约成本模型总额与承运商真实账单总额的偏差。建议控制在 5%-10% 以内。</span>
+              </span>
               <input id="fulfillmentError" type="number" min="0" step="0.1" value="6" />
             </label>
           </div>
