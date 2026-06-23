@@ -78,12 +78,15 @@
               <p class="eyebrow">Price Diagnosis</p>
               <h2>商品价格诊断</h2>
             </div>
-            <div class="section-actions">
-              <input id="csvInput" type="file" accept=".csv,text/csv" hidden />
-              <button id="downloadCsvTemplate" class="secondary-button" type="button">下载 CSV 模板</button>
-              <button id="importCsv" class="secondary-button" type="button">导入 CSV</button>
-              <button id="exportPriceReport" class="primary-button" type="button">导出价格诊断</button>
-              <button id="addSku" class="icon-button" type="button" title="新增 SKU">+</button>
+            <div class="action-stack">
+              <div class="section-actions">
+                <input id="csvInput" type="file" accept=".csv,text/csv" hidden />
+                <button id="downloadCsvTemplate" class="secondary-button" type="button">下载 CSV 模板</button>
+                <button id="importCsv" class="secondary-button" type="button">导入 CSV</button>
+                <button id="exportPriceReport" class="primary-button" type="button">导出价格诊断</button>
+                <button id="addSku" class="icon-button" type="button" title="新增 SKU">+</button>
+              </div>
+              <p class="action-hint">先下载模板，按表头填写 SKU 数据，再用“导入 CSV”生成诊断。</p>
             </div>
           </div>
 

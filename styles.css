@@ -77,6 +77,19 @@ button {
   gap: 10px;
 }
 
+.action-stack {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+}
+
+.action-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 .primary-button,
 .secondary-button,
 .icon-button,
@@ -545,6 +558,10 @@ input:focus {
   .section-actions {
     justify-content: flex-start;
     margin-top: 12px;
+  }
+
+  .action-stack {
+    justify-items: start;
   }
 
   .app-shell {
