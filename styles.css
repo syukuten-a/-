@@ -260,7 +260,7 @@ input:focus {
 }
 
 .shipping-workspace {
-  max-width: 980px;
+  width: 100%;
 }
 
 .section-heading {
@@ -463,6 +463,10 @@ input:focus {
 .action-plan {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 14px;
+}
+
+#shippingTool .metric-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .decision-card,
